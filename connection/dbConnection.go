@@ -34,7 +34,7 @@ func Connect() {
 }
 
 func AutoMigrate(connection *gorm.DB) {
-	connection.Debug().AutoMigrate(
+	connection.AutoMigrate(
 		&models.Cashier{},
 		&models.Category{},
 		&models.Payment{},

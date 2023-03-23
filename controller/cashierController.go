@@ -4,8 +4,9 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/james-kariuki-source/sales-api/models"
 	db "github.com/james-kariuki-source/sales-api/connection"
+	"github.com/james-kariuki-source/sales-api/models"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func CreateCashier(c *fiber.Ctx) error {
@@ -38,15 +39,18 @@ func CreateCashier(c *fiber.Ctx) error {
 			})
 	}
 
+	//hashing the passcode
+	passcode, _ := bcrypt.GenerateFromPassword([]byte(data["passcode"]), 14)
+
 	//Saving the cashier data
 	cashier := models.Cashier{
 		Name:      data["name"],
-		Passcode:  data["passcode"],
+		Passcode:  passcode,
 		CreatedAt: time.Time{},
 		UpdatedAt: time.Time{},
 	}
 
-	db.DB.Create(cashier)
+	db.DB.Create(&cashier)
 
 	return c.Status(200).JSON(fiber.Map{
 		"success":true,
