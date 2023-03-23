@@ -1,13 +1,11 @@
 package models
 
-import (
-	"time"
-)
+import "time"
 
 type Cashier struct {
-	Id        uint      `json:"id"`
+	Id        uint      `json:"id" gorm:"type:INT(10) UNSIGNED NOT NULL AUTO_INCREMENT;primaryKey"`
 	Name      string    `json:"name"`
 	Passcode  string    `json:"passcode"`
-	CreateAt  time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
