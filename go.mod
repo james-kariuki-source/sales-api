@@ -9,6 +9,8 @@ require (
 	gorm.io/gorm v1.24.6
 )
 
+require github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
+
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
